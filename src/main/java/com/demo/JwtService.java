@@ -17,7 +17,8 @@ public class JwtService {
     @Value("${jwt.secret.key}")
     private String secretKey;
 
-    public String createJWT(String id, String issuer, String subject, long ttlMillis) {
+    public String createJWT(String id, String issuer, String subject, long expire) {
+        long ttlMillis = expire * 1000;
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
         long nowMillis = System.currentTimeMillis();

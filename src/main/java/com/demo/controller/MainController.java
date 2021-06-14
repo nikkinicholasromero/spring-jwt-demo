@@ -29,7 +29,7 @@ public class MainController {
     // TODO : Provide JWT details
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
-        if ("admin".equals(request.getUsername()) || "pass123".equals(request.getPassword())) {
+        if ("admin".equals(request.getUsername()) && "pass123".equals(request.getPassword())) {
             String token = jwtService.createJWT("", "", "", tokenExpiration);
             AuthenticationResponse response = new AuthenticationResponse(token, tokenExpiration);
             return ResponseEntity.ok().body(response);
